@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
@@ -6,6 +6,10 @@ members_data = ["member1", "member2", "member3"]
 
 @app.route('/members')
 def get_members():
+    return jsonify({"members": members_data})
+
+@app.route('/lists')
+def get_lists_route():
     return jsonify({"members": members_data})
 
 @app.route('/add-member', methods=['POST'])

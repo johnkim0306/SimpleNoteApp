@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes by Date</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      border-bottom: 1px solid #ddd;
+      padding: 10px;
+      margin: 0;
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+    .note-date {
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Notes by Date</h1>
+  <ul id="notesList">
+    <!-- Notes will be dynamically added here -->
+  </ul>
+
+  <script>
+    // Sample data - replace this with your actual data
+    const notesData = [
+      { content: 'Lorem ipsum dolor sit amet.', date: '2024-01-30' },
+      { content: 'Consectetur adipiscing elit.', date: '2024-01-29' },
+      { content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', date: '2024-01-28' }
+      // Add more notes as needed
+    ];
+
+    // Function to display notes in HTML
+    function displayNotes() {
+      const notesList = document.getElementById('notesList');
+
+      // Clear existing content
+      notesList.innerHTML = '';
+
+      // Loop through notesData and create list items
+      notesData.forEach(note => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+          <p>${note.content}</p>
+          <p class="note-date">${note.date}</p>
+        `;
+        notesList.appendChild(listItem);
+      });
+    }
+
+    // Display notes when the page loads
+    window.onload = displayNotes;
+  </script>
+</body>
+</html>
