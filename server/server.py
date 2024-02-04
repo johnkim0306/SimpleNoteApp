@@ -2,7 +2,10 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-members_data = ["member1", "member2", "member3"]
+# Each member represented as an object with 'name' and 'content' properties
+members_data = [{"name": "member1", "content": "Member 1 content"},
+                {"name": "member2", "content": "Member 2 content"},
+                {"name": "member3", "content": "Member 3 content"}]
 
 @app.route('/members')
 def get_members():
@@ -14,28 +17,28 @@ def get_lists_route():
 
 @app.route('/add-member', methods=['POST'])
 def add_member():
-    new_member = "new_member"  # Replace this with the logic to get the new member data
+    new_member = {"name": "new_member", "content": "New Member content"}
     members_data.append(new_member)
     return jsonify({"members": members_data})
 
 @app.route('/delete-member', methods=['POST'])
 def delete_member():
-    member_to_delete = "new_member"  # Replace this with the logic to get the member to delete
+    member_to_delete = {"name": "new_member", "content": "New Member content"}
     if member_to_delete in members_data:
         members_data.remove(member_to_delete)
     return jsonify({"members": members_data})
 
 @app.route('/update-member', methods=['PUT'])
 def update_member():
-    # Replace this with the logic to get the updated member data from the request
     updated_member_data = request.get_json()
 
     old_member = updated_member_data.get("old_member", "")
     new_member = updated_member_data.get("new_member", "")
 
-    if old_member and old_member in members_data:
-        index = members_data.index(old_member)
-        members_data[index] = new_member
+    # Assuming members_data is a list of objects with 'name' property
+    for member in members_data:
+        if member['name'] == old_member:
+            member['content'] = new_member
 
     return jsonify({"members": members_data})
 
