@@ -7,6 +7,10 @@ members_data = [{"name": "member1", "content": "Member 1 content"},
                 {"name": "member2", "content": "Member 2 content"},
                 {"name": "member3", "content": "Member 3 content"}]
 
+@app.route('/')
+def home():
+    return "<h1>hello</h1>"
+
 @app.route('/members')
 def get_members():
     return jsonify({"members": members_data})
