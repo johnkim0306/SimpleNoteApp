@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-# Each member represented as an object with 'name' and 'content' properties
 members_data = [{"name": "member1", "content": "Member 1 content"},
                 {"name": "member2", "content": "Member 2 content"},
                 {"name": "member3", "content": "Member 3 content"}]
@@ -38,8 +37,6 @@ def update_member():
 
     old_member = updated_member_data.get("old_member", "")
     new_member = updated_member_data.get("new_member", "")
-
-    # Assuming members_data is a list of objects with 'name' property
     for member in members_data:
         if member['name'] == old_member:
             member['content'] = new_member
